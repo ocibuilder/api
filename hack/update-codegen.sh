@@ -7,8 +7,8 @@ set -o pipefail
 SCRIPT_ROOT=$(dirname "${BASH_SOURCE}")/..
 CODEGEN_PKG="$SCRIPT_ROOT/vendor/k8s.io/code-generator"
 
-bash -x ${CODEGEN_PKG}/generate-groups.sh "deepcopy" \
-				  github.com/ocibuilder/api/apis \
+bash -x ${CODEGEN_PKG}/generate-groups.sh "deepcopy,client,informer,lister" \
+				  github.com/ocibuilder/api/client/yoki github.com/ocibuilder/api/apis \
 					  "yoki:v1alpha1" \
 						  --go-header-file $SCRIPT_ROOT/hack/custom-boilerplate.go.txt
 
