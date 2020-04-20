@@ -65,28 +65,28 @@ const (
 	Image MetadataType = "image"
 )
 
-// OCIBuilder is the definition of a ocibuilder resource
+// BuildSpecification is the definition of a yoki build specification resource
 // +genclient
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 // +k8s:openapi-gen=true
-type OCIBuilder struct {
+type BuildSpecification struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:",inline" protobuf:"bytes,1,name=metadata"`
-	Spec              OCIBuilderSpec   `json:"spec" protobuf:"bytes,2,name=spec"`
-	Status            OCIBuilderStatus `json:"status" protobuf:"bytes,3,name=status"`
+	Spec              YokiSpec   `json:"spec" protobuf:"bytes,2,name=spec"`
+	Status            YokiStatus `json:"status" protobuf:"bytes,3,name=status"`
 }
 
-// OCIBuilderList is the list of OCIBuilder resources.
+// BuildSpecificationList is the list of yoki resources.
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
-type OCIBuilderList struct {
+type BuildSpecificationList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata" protobuf:"bytes,1,name=metadata"`
 	// +listType=map
-	Items []OCIBuilder `json:"items" protobuf:"bytes,2,name=items"`
+	Items []BuildSpecification `json:"items" protobuf:"bytes,2,name=items"`
 }
 
-// OCIBuilderSpec represents OCIBuilder specifications.
-type OCIBuilderSpec struct {
+// YokiSpec represents the Yoki build specifications.
+type YokiSpec struct {
 	// Envs are the list of environment variables available to components.
 	// +optional
 	// +listType=map
@@ -111,8 +111,8 @@ type OCIBuilderSpec struct {
 	Metadata *Metadata `json:"metadata,omitempty" protobuf:"bytes,6,opt,name=metadata"`
 }
 
-// OCIBuilderStatus holds the status of a OCIBuilder resource
-type OCIBuilderStatus struct {
+// YokiStatus holds the status of a Yoki resource
+type YokiStatus struct {
 	// Phase is the high-level summary of the OCIBuilder
 	Phase NodePhase `json:"phase" protobuf:"bytes,1,opt,name=phase"`
 	// StartedAt is the time at which this OCIBuilder was initiated

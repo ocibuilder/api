@@ -17,17 +17,17 @@ limitations under the License.
 package v1alpha1
 
 import (
-	"github.com/ocibuilder/ocibuilder/pkg/apis/ocibuilder"
+	"github.com/ocibuilder/api/apis/yoki"
 	"k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 )
 
 // SchemeGroupVersion is a group version used to register these objects
-var SchemeGroupVersion = schema.GroupVersion{Group: ocibuilder.Group, Version: "v1alpha1"}
+var SchemeGroupVersion = schema.GroupVersion{Group: yoki.Group, Version: "v1alpha1"}
 
 // SchemaGroupVersionKind is a group version kind used to attach owner references to gateway-controller
-var SchemaGroupVersionKind = schema.GroupVersionKind{Group: ocibuilder.Group, Version: "v1alpha1", Kind: ocibuilder.Kind}
+var SchemaGroupVersionKind = schema.GroupVersionKind{Group: yoki.Group, Version: "v1alpha1", Kind: yoki.Kind}
 
 // Kind takes an unqualified kind and returns back a Group qualified GroupKind
 func Kind(kind string) schema.GroupKind {
@@ -49,8 +49,8 @@ var (
 
 func addKnownTypes(scheme *runtime.Scheme) error {
 	scheme.AddKnownTypes(SchemeGroupVersion,
-		&OCIBuilder{},
-		&OCIBuilderList{},
+		&BuildSpecification{},
+		&BuildSpecificationList{},
 	)
 	v1.AddToGroupVersion(scheme, SchemeGroupVersion)
 	return nil
